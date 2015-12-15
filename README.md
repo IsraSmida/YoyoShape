@@ -1,8 +1,8 @@
-# yoyo-shape [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# yoyo-shape [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status](https://coveralls.io/repos/IsraSmida/YoyoShape/badge.svg?branch=master&service=github)](https://coveralls.io/github/IsraSmida/YoyoShape?branch=master)
 > 
 
 
-[![Coverage Status](https://coveralls.io/repos/IsraSmida/YoyoShape/badge.svg?branch=master&service=github)](https://coveralls.io/github/IsraSmida/YoyoShape?branch=master)
+
 
 
 ## Installation
