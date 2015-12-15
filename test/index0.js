@@ -1,7 +1,5 @@
-import {should} from 'chai';
+import assert from 'assert';
 import yoyoShape from '../lib';
-
-should();
 
 var roadAttr;
 var amenityAttr;
@@ -19,15 +17,16 @@ module('Unit Testing The "Shapes" Module', {
 
 describe('yoyoShape', function () {
   it('should have a version number!', function () {
-    yoyoShape.should.have.property('VERSION');
+    assert(typeof yoyoShape.VERSION !== 'undefined', 'The Project should have a VERSION, whatever the actual version.');
   });
 });
 
 describe('yoyoShape', function () {
   it('should create default object', function () {
-    should(yoyoShape.createShape).not.be.type('undefined');
+    assert(typeof yoyoShape.createShape !== 'undefined', 'The Shapes module sould expose a "createShape" function');
     var shape0 = yoyoShape.createShape(roadAttr);
-    shape0.should.be.an('object');
+    assert(typeof shape0 === 'object', 'The "createShape" function sould return objects.');
+
   });
 });
 
@@ -41,76 +40,79 @@ describe('yoyoShape', function () {
         props.push(prop);
       }
     }
-    props.should.have.length(4);
+    assert(props.length === 4, 'Only 4 properties SHOULD be  visible in objects created by "createShape"');
+    props.forEach(function (attr){
+      assert(attr === 'id' || attr === 'toString' || attr === 'toSvgPath' || 'getName', 'One of "id" "toString", "toSvgPath" or "getName"');
+    });
   });
 });
 
 describe('yoyoShape', function () {
   it('should have a working toSVGPath method', function () {
     var shape0 = yoyoShape.createShape(roadAttr);
-    shape0.toSvgPath().should.be.equal('M 708 369 L 743 396');
+    assert(shape0.toSvgPath() === 'M 708 369 L 743 396', 'Should create a valid SVG PATH (google SVG PATH for details)');
   });
 });
 
 describe('yoyoShape', function () {
-  it('should have a working toSvgPath method', function () {
+  it('should have access to the attribute name', function () {
     var shape0 = yoyoShape.createShape(roadAttr);
-    shape0.getName().should.be.equal('Rue de Comar');
+    assert(shape0.getName() === 'Rue de Colmar', 'Should return the value corresponding to the "name" property in the attributes.');
   });
 });
 
 describe('yoyoShape', function () {
   it('should have a working createRoad function', function () {
-    yoyoShape.createRoad.should.be.an('object');
+    assert(typeof yoyoShape.createRoad !== 'undefined', 'The Shapes module sould expose a "createRoad" function');
   });
 });
 
 describe('yoyoShape', function () {
   it('should create objects with createRoad function', function () {
     var road = yoyoShape.createRoad(roadAttr);
-    road.getCategory.should.be.a('function');
-    road.getCategory().should.be.equal('Residential');
+    assert(typeof road.getCategory === 'function', 'Object Created with "createRoad" Should have a getCategory function');
+    assert(road.getCategory() === 'Residential', 'Should return the value corresponding to the "highway" property in the attributes');
   });
 });
 
 describe('yoyoShape', function () {
   it('should have a working createAmenity function', function () {
-    yoyoShape.createAmenity.should.be.an('object');
+    assert(typeof yoyoShape.createAmenity !== 'undefined', 'The Shapes module sould expose a "createAmenity" function');
   });
 });
 
 describe('yoyoShape', function () {
   it('should create objects with createAmenity function', function () {
     var amenity = yoyoShape.createAmenity(amenityAttr);
-    amenity.getType.should.be.a('function');
-    amenity.getType().should.be.equal('parking');
+    assert(typeof amenity.getType === 'function', 'Object Created with "createAmenity" Should have a getType function');
+    assert(amenity.getType() === 'parking', 'Should return the value corresponding to the "amenity" property in the attributes');
   });
 });
 
 describe('yoyoShape', function () {
   it('should have a working createBuilding function', function () {
-    yoyoShape.createBuilding.should.be.an('object');
+    assert(typeof yoyoShape.createBuilding !== 'undefined', 'The Shapes module sould expose a "createBuilding" function');
   });
 });
 
 describe('yoyoShape', function () {
   it('should create objects with createBuilding function', function () {
     var building = yoyoShape.createBuilding(buildingAttr);
-    building.getArea.should.be.a('function');
-    building.getArea().should.be.equal('10000');
+    assert(typeof building.getArea === 'function', 'Object Created with "createBuilding" Should have a getArea function');
+    assert(building.getArea() === 10000, 'Should return the area of the building computed from the set of points in the nodes attributes');
   });
 });
 
 describe('yoyoShape', function () {
   it('should have a working createNatural function', function () {
-    yoyoShape.createNatural.should.be.an('object');
+    assert(typeof yoyoShape.createNatural !== 'undefined', 'The Shapes module sould expose a "createNatural" function');
   });
 });
 
 describe('yoyoShape', function () {
   it('should create objects with createBuilding function', function () {
     var natural = yoyoShape.createNatural(naturalAttr);
-    natural.getType.should.be.a('function');
-    natural.getType().should.be.equal('water');
+    assert(typeof natural.getType === 'function', 'Object Created with "createNatural" Should have a getType function');
+    assert(natural.getType() === 'water', 'Should return the value corresponding to the "natural" property in the attributes');
   });
 });
